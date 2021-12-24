@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Homework W13</title>
+	<link rel="stylesheet" type="text/css" href="hw.css">
+</head>
+<body>
+	<div id="wholeBlock">
+		<h1>Guessing Game</h1>
+		<form>
+			<div id="guess">
+				<label>Your Guessing(1~100)</label>
+				<input id="inputNum" type="number"><br>
+			</div>
+		</form>
+		<input type="button" value="play" onclick="play()" class="hover">
+		<table id="result">
+			<tr>
+				<th>Result:</th>
+			</tr>
+		</table>
+	</div>
+
+	<script type="text/javascript">
+		var ceil = 100;
+		var bottom = 1;
+		var ans = Math.floor(Math.random()*100 + 1);
+
+		function play(){
+			var input = document.getElementById("inputNum").value;
+			
+			if(input>=bottom && input<=ceil){
+				if(input == ans){
+					alert("You are right ! Congratulations～");
+					location.reload();
+				}else{
+					if(input<ans){
+						bottom = input;
+						// alert(bottom);
+						var tr = document.createElement("tr");
+						var td = document.createElement("td");
+						var text = document.createTextNode(bottom + "~" + ceil);
+						td.appendChild(text);
+						tr.appendChild(td);
+						document.getElementById("result").appendChild(tr);
+					}else{
+						ceil = input;
+						// alert(ceil);
+						var tr = document.createElement("tr");
+						var td = document.createElement("td");
+						var text = document.createTextNode(bottom + "~" + ceil);
+						td.appendChild(text);
+						tr.appendChild(td);
+						document.getElementById("result").appendChild(tr);
+					}
+				}
+			}else{
+				alert("Please input number between" + bottom + "~" + ceil);
+			}
+		}
+
+	</script>
+</body>
+</html>
